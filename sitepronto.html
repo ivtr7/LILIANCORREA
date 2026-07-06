@@ -1,0 +1,1552 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desafio Encare Suas Dívidas — Lilian Corrêa</title>
+  <meta name="description" content="Organize suas dívidas em um fim de semana com o Desafio Encare Suas Dívidas, um eBook prático para clareza financeira." />
+  <meta name="author" content="Lilian Corrêa" />
+  <meta property="og:title" content="Desafio Encare Suas Dívidas — Lilian Corrêa" />
+  <meta property="og:description" content="Pare de fugir dos números e organize suas dívidas em um fim de semana." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+  <style>
+    /* =========================================================
+       Tokens de design — paleta dark editorial + acento vermelho
+       ========================================================= */
+    :root {
+      --raio: 0.75rem;
+      --fundo: oklch(0.10 0.012 25);
+      --texto: oklch(0.98 0 0);
+      --texto-suave: oklch(0.72 0.008 60);
+      --superficie: oklch(0.14 0.015 20);
+      --superficie-2: oklch(0.17 0.02 22);
+      --linha: oklch(0.55 0.18 27 / 0.18);
+      --tarja: oklch(0.62 0.24 27);
+      --fonte-titulo: "Archivo Black", "Archivo", Impact, sans-serif;
+      --fonte-texto: "Inter", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    /* Reset básico */
+    *, *::before, *::after { box-sizing: border-box; }
+    * { border-color: var(--linha); }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background-color: var(--fundo);
+      color: var(--texto);
+      font-family: var(--fonte-texto);
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse 70% 40% at 50% -15%, oklch(0.55 0.22 27 / 0.12), transparent 65%),
+        radial-gradient(ellipse 50% 30% at 100% 10%, oklch(0.55 0.22 27 / 0.05), transparent 75%);
+      background-attachment: fixed;
+      line-height: 1.5;
+    }
+    h1, h2, h3, h4 {
+      font-family: var(--fonte-titulo);
+      letter-spacing: -0.01em;
+      color: var(--texto);
+      margin: 0;
+    }
+    p, ul, ol { margin: 0; }
+    ul { list-style: none; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+    /* =========================================================
+       Utilitários de layout
+       ========================================================= */
+    .container { max-width: 64rem; margin-inline: auto; padding-inline: 1.25rem; }
+    .container-largo { max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+    .secao { padding-block: 2.5rem; border-bottom: 1px solid var(--linha); }
+    @media (min-width: 768px) {
+      .container, .container-largo { padding-inline: 1.5rem; }
+      .secao { padding-block: 3.5rem; }
+    }
+
+    /* Elementos tipográficos */
+    .tarja {
+      color: var(--tarja);
+      text-shadow: 0 0 24px oklch(0.62 0.24 27 / 0.45);
+    }
+    .tarja-fundo {
+      color: #fff;
+      background: var(--tarja);
+      padding: 0.12em 0.35em;
+      border-radius: 0.22em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      font-weight: 600;
+      text-shadow: none;
+    }
+    .sobrancelha {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .sobrancelha::before {
+      content: "";
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--tarja);
+    }
+    .sobrancelha .rotulo {
+      font-family: var(--fonte-texto);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--texto-suave);
+    }
+    .regua-tarja {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--tarja), transparent);
+    }
+    .titulo-secao {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      line-height: 1.15;
+      font-weight: 600;
+    }
+    @media (min-width: 768px) { .titulo-secao { font-size: 1.9rem; } }
+
+    /* =========================================================
+       Botões
+       ========================================================= */
+    .botao-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      color: #fff;
+      background: radial-gradient(120% 180% at 50% 0%, oklch(0.72 0.20 27) 0%, oklch(0.55 0.24 27) 60%, oklch(0.42 0.22 27) 100%);
+      box-shadow:
+        0 8px 24px -8px oklch(0.62 0.24 27 / 0.5),
+        0 0 0 1px oklch(0.72 0.20 27 / 0.55) inset,
+        0 1px 0 0 oklch(0.90 0.10 27 / 0.35) inset;
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .botao-pill * { color: #fff !important; }
+    .botao-pill:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 36px -10px oklch(0.62 0.24 27 / 0.7),
+        0 0 0 1px oklch(0.78 0.20 27 / 0.75) inset,
+        0 1px 0 0 oklch(0.95 0.10 27 / 0.45) inset;
+      filter: brightness(1.06);
+    }
+    .botao-pill--pequeno {
+      padding: 0.5rem 1rem;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+    .botao-fantasma {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.9);
+      border: 1px solid oklch(0.62 0.24 27 / 0.6);
+      transition: all 200ms ease;
+    }
+    .botao-fantasma:hover {
+      background: oklch(0.62 0.24 27 / 0.15);
+      border-color: var(--tarja);
+    }
+
+    /* Pulso do botão a cada 5s */
+    .botao-pulso { animation: pulsoBotao 5s ease-in-out infinite; }
+    .botao-pulso:hover { animation-play-state: paused; }
+    @keyframes pulsoBotao {
+      0%, 90%, 100% {
+        transform: translateY(0) scale(1);
+        box-shadow:
+          0 8px 24px -8px oklch(0.62 0.24 27 / 0.5),
+          0 0 0 1px oklch(0.72 0.20 27 / 0.55) inset,
+          0 1px 0 0 oklch(0.90 0.10 27 / 0.35) inset;
+      }
+      93% {
+        transform: translateY(1px) scale(0.965);
+        box-shadow:
+          0 4px 14px -6px oklch(0.62 0.24 27 / 0.65),
+          0 0 0 1px oklch(0.85 0.22 27 / 0.85) inset,
+          0 0 24px 4px oklch(0.72 0.24 27 / 0.55);
+        filter: brightness(1.15);
+      }
+      96% {
+        transform: translateY(0) scale(1.02);
+        box-shadow:
+          0 16px 40px -10px oklch(0.62 0.24 27 / 0.75),
+          0 0 0 1px oklch(0.78 0.20 27 / 0.75) inset,
+          0 0 0 6px oklch(0.62 0.24 27 / 0.12);
+      }
+    }
+
+    /* =========================================================
+       Cabeçalho / Navegação
+       ========================================================= */
+    .cabecalho {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--linha);
+      background: color-mix(in oklab, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+    }
+    .cabecalho-interno {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 3.5rem;
+    }
+    .marca {
+      font-family: var(--fonte-titulo);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .menu-desktop { display: none; gap: 1.75rem; align-items: center; }
+    .menu-desktop a { font-size: 0.875rem; color: var(--texto-suave); transition: color 200ms; }
+    .menu-desktop a:hover { color: var(--texto); }
+    .botao-menu { display: inline-flex; flex-direction: column; gap: 5px; }
+    .botao-menu span { display: block; width: 24px; height: 1px; background: currentColor; }
+    .menu-mobile {
+      display: none;
+      border-top: 1px solid var(--linha);
+      background: var(--fundo);
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .menu-mobile.aberto { display: flex; }
+    .menu-mobile a { font-size: 0.875rem; color: var(--texto-suave); }
+    .cta-cabecalho { display: none; }
+    @media (min-width: 1024px) {
+      .cabecalho-interno { height: 4rem; }
+      .menu-desktop { display: inline-flex; }
+      .cta-cabecalho { display: inline-flex; }
+      .botao-menu { display: none; }
+    }
+
+    /* =========================================================
+       Hero
+       ========================================================= */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-bottom: 1px solid var(--linha);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -10% -20% auto -20%;
+      height: 120%;
+      background: radial-gradient(ellipse 55% 45% at 30% 40%, oklch(0.55 0.22 27 / 0.14), transparent 68%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero-interno { padding-block: 2rem; }
+    .hero-grade { display: grid; gap: 1.5rem; }
+    .hero-selo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--linha);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      color: var(--texto-suave);
+      margin-bottom: 0.75rem;
+    }
+    .hero-selo .ponto { width: 6px; height: 6px; border-radius: 50%; background: var(--tarja); display: inline-block; }
+    .hero-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      line-height: 1.12;
+      font-weight: 600;
+      word-break: break-word;
+    }
+    .hero-descricao {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+      line-height: 1.6;
+      max-width: 36rem;
+    }
+    .hero-acoes {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+    .hero-acoes .nota { font-size: 11px; color: var(--texto-suave); line-height: 1.35; }
+    .hero-beneficios {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--linha);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem 1.5rem;
+      max-width: 36rem;
+    }
+    .hero-beneficios li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--texto);
+    }
+    .hero-beneficios li::before {
+      content: "";
+      margin-top: 0.4rem;
+      display: block;
+      width: 0.75rem;
+      height: 1px;
+      background: var(--tarja);
+      flex-shrink: 0;
+    }
+    .hero-foto {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      max-width: 24rem;
+      margin-inline: auto;
+    }
+    .hero-foto .halo {
+      position: absolute;
+      inset: -0.75rem;
+      border-radius: 1rem;
+      background: radial-gradient(ellipse at center, oklch(0.62 0.24 27 / 0.22), transparent 70%);
+      filter: blur(32px);
+      pointer-events: none;
+    }
+    .hero-foto .moldura {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      background: var(--superficie);
+      border: 1px solid oklch(0.62 0.24 27 / 0.25);
+      box-shadow: 0 20px 50px -20px oklch(0.62 0.24 27 / 0.35);
+    }
+    .hero-foto img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    @media (min-width: 640px) {
+      .hero-beneficios { grid-template-columns: 1fr 1fr; }
+      .hero-acoes { flex-direction: row; align-items: center; }
+    }
+    @media (min-width: 768px) {
+      .hero-interno { padding-block: 3rem; }
+      .hero-grade { grid-template-columns: 1.15fr 1fr; gap: 2.5rem; align-items: center; }
+      .coluna-hero-texto { order: 1; }
+      .coluna-hero-foto { order: 2; justify-self: end; max-width: none; }
+      .hero-foto { aspect-ratio: 3/4; max-height: 440px; }
+    }
+    @media (min-width: 1024px) {
+      .hero-titulo { font-size: 1.9rem; }
+    }
+
+    /* =========================================================
+       Seção "A realidade" (dor) + sifrão flutuante
+       ========================================================= */
+    .dor-grade { display: grid; gap: 2.5rem; align-items: stretch; }
+    .dor-texto { max-width: 48rem; }
+    .dor-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      line-height: 1.15;
+      font-weight: 600;
+    }
+    .dor-paragrafos {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 1rem;
+      color: var(--texto-suave);
+      line-height: 1.7;
+    }
+    .dor-paragrafos .destaque { color: var(--texto); font-weight: 500; }
+    .dor-cta { margin-top: 2.5rem; }
+    .sifrao-coluna { display: none; position: relative; align-items: center; justify-content: center; }
+    .sifrao-coluna::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 60% 55% at 50% 50%, oklch(0.55 0.22 27 / 0.18), transparent 70%);
+    }
+    .sifrao {
+      position: relative;
+      width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 60px oklch(0.55 0.22 27 / 0.35));
+      animation: flutuarSifrao 5s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes flutuarSifrao {
+      0%, 100% { transform: translateY(-6px) rotate(-2deg); }
+      50%      { transform: translateY(6px) rotate(-2deg); }
+    }
+    @media (min-width: 768px) {
+      .dor-grade { grid-template-columns: minmax(0,1fr) 320px; gap: 3.5rem; }
+      .sifrao-coluna { display: flex; }
+      .dor-titulo, .dor-paragrafos { font-size: 1.125rem; }
+      .dor-titulo { font-size: 1.9rem; }
+    }
+    @media (min-width: 1024px) {
+      .dor-grade { grid-template-columns: minmax(0,1fr) 380px; }
+    }
+
+    /* =========================================================
+       Lista "Para quem é"
+       ========================================================= */
+    .fundo-superficie { background: var(--superficie); }
+    .lista-numerada {
+      background: var(--fundo);
+      border-top: 1px solid var(--linha);
+      border-bottom: 1px solid var(--linha);
+    }
+    .lista-numerada li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--linha);
+      transition: background-color 200ms;
+    }
+    .lista-numerada li:last-child { border-bottom: 0; }
+    .lista-numerada li:hover { background: var(--superficie); }
+    .lista-numerada .numero {
+      font-family: var(--fonte-titulo);
+      font-size: 1.25rem;
+      color: var(--tarja);
+      font-variant-numeric: tabular-nums;
+    }
+    .lista-numerada p { font-size: 0.875rem; color: var(--texto); line-height: 1.4; }
+    @media (min-width: 768px) {
+      .lista-numerada li { grid-template-columns: 96px 1fr; gap: 1.5rem; padding: 1.5rem 2rem; }
+      .lista-numerada .numero { font-size: 1.875rem; }
+      .lista-numerada p { font-size: 1.125rem; }
+    }
+
+    /* =========================================================
+       "O desafio" — 2 colunas
+       ========================================================= */
+    .grade-duas { display: grid; gap: 2rem; align-items: start; }
+    @media (min-width: 768px) {
+      .grade-duas { grid-template-columns: 1fr 1.2fr; gap: 3.5rem; }
+    }
+    .paragrafos-longos { display: flex; flex-direction: column; gap: 1.25rem; font-size: 1rem; color: var(--texto-suave); line-height: 1.7; }
+    .paragrafos-longos .destaque { color: var(--texto); font-weight: 500; }
+    @media (min-width: 768px) { .paragrafos-longos { font-size: 1.125rem; gap: 1.5rem; } }
+
+    /* =========================================================
+       Cards de pilares
+       ========================================================= */
+    .cartao-escuro {
+      background: var(--superficie);
+      border: 1px solid var(--linha);
+      border-radius: 1rem;
+      transition: transform 240ms, border-color 240ms, box-shadow 240ms, background 240ms;
+      padding: 1.25rem;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .cartao-escuro:hover {
+      transform: translateY(-3px);
+      border-color: oklch(0.62 0.24 27 / 0.45);
+      box-shadow: 0 20px 50px -20px oklch(0.62 0.24 27 / 0.35);
+      background: var(--superficie-2);
+    }
+    .cartao-escuro .numero {
+      font-family: var(--fonte-titulo);
+      font-size: 1.875rem;
+      color: var(--tarja);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 24px oklch(0.62 0.24 27 / 0.5);
+      grid-row: span 2;
+    }
+    .cartao-escuro h3 { font-family: var(--fonte-titulo); font-size: 1.125rem; line-height: 1.35; }
+    .cartao-escuro p { font-size: 0.875rem; color: var(--texto-suave); line-height: 1.6; grid-column: 2; }
+    .lista-cartoes { display: flex; flex-direction: column; gap: 1rem; }
+    @media (min-width: 768px) {
+      .cartao-escuro { grid-template-columns: 120px 1fr 2fr; gap: 2.5rem; padding: 1.75rem 2.5rem; }
+      .cartao-escuro .numero { font-size: 3rem; grid-row: auto; }
+      .cartao-escuro h3 { font-size: 1.5rem; }
+      .cartao-escuro p { font-size: 1rem; grid-column: auto; }
+    }
+
+    /* =========================================================
+       Módulos
+       ========================================================= */
+    .lista-modulos { border-top: 1px solid var(--linha); }
+    .modulo {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding-block: 1.25rem;
+      border-bottom: 1px solid var(--linha);
+    }
+    .modulo .numero {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      color: var(--tarja);
+      font-variant-numeric: tabular-nums;
+      grid-row: span 2;
+    }
+    .modulo h3 { font-family: var(--fonte-titulo); font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+    .modulo p { font-size: 0.875rem; color: var(--texto-suave); line-height: 1.6; grid-column: 2; }
+    @media (min-width: 768px) {
+      .modulo { grid-template-columns: 100px 1.2fr 2fr; gap: 2.5rem; padding-block: 1.75rem; }
+      .modulo .numero { font-size: 2.25rem; grid-row: auto; }
+      .modulo h3 { font-size: 1.5rem; }
+      .modulo p { font-size: 1rem; grid-column: auto; }
+    }
+
+    /* =========================================================
+       Bônus (mentoria)
+       ========================================================= */
+    .bonus-embrulho { position: relative; }
+    .bonus-halo {
+      position: absolute;
+      inset: -1.5rem;
+      border-radius: 2rem;
+      background: radial-gradient(ellipse at center, oklch(0.62 0.24 27 / 0.45), transparent 65%);
+      filter: blur(48px);
+      pointer-events: none;
+    }
+    .bonus-cartao {
+      position: relative;
+      border-radius: 1.5rem;
+      border: 1px solid oklch(0.62 0.24 27 / 0.4);
+      overflow: hidden;
+      padding: 1.5rem;
+      background:
+        radial-gradient(ellipse 90% 100% at 0% 0%, oklch(0.30 0.18 27 / 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 80% at 100% 100%, oklch(0.55 0.22 27 / 0.35) 0%, transparent 60%),
+        var(--superficie);
+      box-shadow: 0 40px 100px -30px oklch(0.62 0.24 27 / 0.5), 0 0 0 1px oklch(0.62 0.24 27 / 0.15) inset;
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .bonus-selo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      background: oklch(0.62 0.24 27 / 0.2);
+      border: 1px solid oklch(0.62 0.24 27 / 0.5);
+      padding: 0.375rem 1rem;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .bonus-selo .ponto {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--tarja);
+      animation: piscar 1.6s ease-in-out infinite;
+    }
+    @keyframes piscar { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .bonus-titulo { font-family: var(--fonte-titulo); font-size: 1.5rem; line-height: 1.05; color: #fff; }
+    .bonus-descricao { margin-top: 1.5rem; font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .bonus-coluna-direita { display: flex; flex-direction: column; gap: 1.25rem; font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+    .bonus-checklist { display: grid; gap: 0.75rem; padding-top: 0.5rem; }
+    .bonus-checklist li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; color: rgba(255,255,255,0.9); }
+    .bonus-check {
+      margin-top: 0.375rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem; height: 1rem;
+      border-radius: 50%;
+      background: var(--tarja);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .bonus-rodape {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--tarja);
+      font-weight: 700;
+    }
+    @media (min-width: 768px) {
+      .bonus-cartao { grid-template-columns: 1fr 1.3fr; gap: 3.5rem; padding: 2.5rem; }
+      .bonus-titulo { font-size: 2rem; }
+      .bonus-descricao, .bonus-coluna-direita { font-size: 1.125rem; }
+      .bonus-checklist li { font-size: 1rem; }
+    }
+
+    /* =========================================================
+       Antes e depois
+       ========================================================= */
+    .antes-depois { display: grid; gap: 1.25rem; }
+    .quadro-antes, .quadro-depois {
+      padding: 1.5rem;
+      border: 1px solid var(--linha);
+    }
+    .quadro-antes { background: var(--superficie); }
+    .quadro-depois {
+      background: var(--fundo);
+      border-color: var(--texto);
+      position: relative;
+    }
+    .quadro-depois::before {
+      content: "";
+      position: absolute;
+      top: 0; right: 0;
+      height: 4px; width: 6rem;
+      background: var(--tarja);
+    }
+    .antes-depois .titulo-quadro {
+      font-family: var(--fonte-texto);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--texto-suave);
+    }
+    .quadro-depois .titulo-quadro { color: var(--tarja); }
+    .antes-depois ul { display: flex; flex-direction: column; gap: 0.75rem; }
+    .antes-depois li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+    }
+    .quadro-depois li { color: var(--texto); font-weight: 500; }
+    .antes-depois li::before {
+      content: "";
+      margin-top: 0.5rem;
+      display: block;
+      width: 1rem;
+      height: 1px;
+      background: var(--texto-suave);
+      flex-shrink: 0;
+    }
+    .quadro-depois li::before { background: var(--tarja); }
+    @media (min-width: 768px) {
+      .antes-depois { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .quadro-antes, .quadro-depois { padding: 2.5rem; }
+      .antes-depois li { font-size: 1rem; }
+    }
+
+    /* =========================================================
+       Sobre a Lilian
+       ========================================================= */
+    .sobre-grade { display: grid; gap: 2.5rem; align-items: center; }
+    .sobre-foto { position: relative; max-width: 24rem; margin-inline: auto; width: 100%; }
+    .sobre-foto .moldura-externa {
+      position: absolute;
+      inset: -0.75rem;
+      border: 1px solid var(--linha);
+    }
+    .sobre-foto .foto-interna {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--fundo);
+    }
+    .sobre-foto img { width: 100%; height: 100%; object-fit: cover; }
+    @media (min-width: 768px) {
+      .sobre-grade { grid-template-columns: 1fr 1.4fr; gap: 4rem; }
+      .sobre-foto { max-width: none; margin: 0; }
+    }
+
+    /* =========================================================
+       Oferta
+       ========================================================= */
+    .oferta-caixa {
+      border: 1px solid var(--texto);
+      background: var(--fundo);
+      display: grid;
+    }
+    .oferta-inclusos {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--linha);
+    }
+    .oferta-inclusos ul { display: flex; flex-direction: column; gap: 0.75rem; }
+    .oferta-inclusos li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--texto);
+    }
+    .oferta-inclusos li::before {
+      content: "";
+      margin-top: 0.5rem;
+      width: 1rem; height: 1px;
+      background: var(--tarja);
+      flex-shrink: 0;
+    }
+    .oferta-preco {
+      padding: 1.5rem;
+      background: var(--superficie);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .oferta-preco .rotulo-invest {
+      font-size: 0.75rem;
+      color: var(--texto-suave);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .oferta-preco .valor {
+      margin-top: 0.75rem;
+      font-family: var(--fonte-titulo);
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+    .oferta-preco .parcelas {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+    }
+    .oferta-preco .beneficios {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+    }
+    .oferta-preco .compra-segura {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--texto-suave);
+    }
+    .oferta-preco .regua-tarja { margin-block: 1.5rem; }
+    @media (min-width: 768px) {
+      .oferta-caixa { grid-template-columns: 1.2fr 1fr; }
+      .oferta-inclusos { padding: 3rem; border-bottom: 0; border-right: 1px solid var(--linha); }
+      .oferta-inclusos li { font-size: 1rem; }
+      .oferta-preco { padding: 3rem; }
+      .oferta-preco .valor { font-size: 3.75rem; }
+      .oferta-preco .parcelas, .oferta-preco .beneficios { font-size: 1rem; }
+      .oferta-preco .regua-tarja { margin-block: 2rem; }
+    }
+
+    /* =========================================================
+       FAQ
+       ========================================================= */
+    .faq { border-top: 1px solid var(--linha); }
+    .faq-item { border-bottom: 1px solid var(--linha); }
+    .faq-botao {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1.25rem;
+      text-align: left;
+    }
+    .faq-botao .pergunta {
+      font-family: var(--fonte-titulo);
+      font-size: 1rem;
+      color: var(--texto);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .faq-icone {
+      flex-shrink: 0;
+      width: 1.75rem; height: 1.75rem;
+      border: 1px solid var(--texto);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      transition: transform 200ms, background 200ms, color 200ms;
+    }
+    .faq-item.aberto .faq-icone {
+      transform: rotate(45deg);
+      background: var(--texto);
+      color: var(--fundo);
+    }
+    .faq-resposta {
+      display: none;
+      padding-bottom: 1.25rem;
+      padding-right: 2.5rem;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+      line-height: 1.7;
+    }
+    .faq-item.aberto .faq-resposta { display: block; }
+    @media (min-width: 768px) {
+      .faq-botao { padding-block: 1.5rem; }
+      .faq-botao .pergunta { font-size: 1.25rem; }
+      .faq-icone { width: 2rem; height: 2rem; }
+      .faq-resposta { font-size: 1rem; padding-right: 3.5rem; padding-bottom: 1.5rem; }
+    }
+
+    /* =========================================================
+       CTA final
+       ========================================================= */
+    .cta-final { position: relative; overflow: hidden; }
+    .cta-final::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, oklch(0.55 0.22 27 / 0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final .conteudo { position: relative; max-width: 48rem; }
+    .cta-final h2 { font-family: var(--fonte-titulo); font-size: 1.5rem; line-height: 1.05; color: #fff; }
+    .cta-final .subtitulo {
+      margin-top: 0.75rem;
+      font-family: var(--fonte-titulo);
+      font-size: 1.125rem;
+      color: var(--tarja);
+      line-height: 1.35;
+    }
+    .cta-final .paragrafos {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+    .cta-final .paragrafos .destaque { color: #fff; font-weight: 500; }
+    @media (min-width: 768px) {
+      .cta-final h2 { font-size: 2rem; }
+      .cta-final .subtitulo { font-size: 1.5rem; }
+      .cta-final .paragrafos { font-size: 1.125rem; }
+    }
+
+    /* =========================================================
+       Rodapé
+       ========================================================= */
+    .rodape { border-top: 1px solid var(--linha); background: var(--fundo); }
+    .rodape-interno { padding-block: 3rem; }
+    .cartao-instagram {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid oklch(0.62 0.24 27 / 0.3);
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      background:
+        radial-gradient(ellipse 70% 100% at 0% 0%, oklch(0.30 0.18 27 / 0.35) 0%, transparent 60%),
+        var(--superficie);
+      box-shadow: 0 20px 60px -20px oklch(0.62 0.24 27 / 0.35);
+    }
+    .cartao-instagram-flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+    }
+    .cartao-instagram .foto-embrulho { position: relative; flex-shrink: 0; }
+    .cartao-instagram .foto-embrulho::before {
+      content: "";
+      position: absolute;
+      inset: -0.25rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, oklch(0.62 0.24 27 / 0.5), transparent 70%);
+      filter: blur(12px);
+    }
+    .cartao-instagram img {
+      position: relative;
+      width: 5rem; height: 5rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid oklch(0.62 0.24 27 / 0.6);
+    }
+    .cartao-instagram .titulo { font-family: var(--fonte-titulo); font-size: 1.25rem; color: var(--texto); line-height: 1.2; }
+    .cartao-instagram .subtexto { margin-top: 0.25rem; font-size: 0.875rem; color: var(--texto-suave); }
+    .icone-ig { width: 1rem; height: 1rem; position: relative; z-index: 1; }
+    @media (min-width: 768px) {
+      .cartao-instagram { padding: 2rem; margin-bottom: 3.5rem; }
+      .cartao-instagram-flex { flex-direction: row; text-align: left; gap: 1.75rem; }
+      .cartao-instagram img { width: 6rem; height: 6rem; }
+      .cartao-instagram .titulo { font-size: 1.5rem; }
+    }
+    .rodape-colunas { display: grid; gap: 2rem; }
+    .rodape-marca { font-family: var(--fonte-titulo); font-size: 1.25rem; font-weight: 600; }
+    .rodape-marca-tag {
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--texto-suave);
+    }
+    .rodape-descricao { margin-top: 1.5rem; color: var(--texto-suave); line-height: 1.7; max-width: 28rem; }
+    .rodape-coluna .titulo-coluna {
+      font-family: var(--fonte-texto);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--texto-suave);
+      margin-bottom: 1rem;
+    }
+    .rodape-coluna ul { display: flex; flex-direction: column; gap: 0.75rem; }
+    .rodape-coluna a:hover { color: var(--tarja); }
+    .rodape-legal {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--linha);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .rodape-legal p:first-child { font-size: 0.875rem; color: var(--texto-suave); }
+    .rodape-legal p:last-child { font-size: 0.75rem; color: var(--texto-suave); }
+    @media (min-width: 768px) {
+      .rodape-interno { padding-block: 4rem; }
+      .rodape-colunas { grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; }
+      .rodape-legal { flex-direction: row; align-items: center; justify-content: space-between; margin-top: 3.5rem; padding-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       Cabeçalho
+       ========================================================= -->
+  <header class="cabecalho">
+    <div class="container-largo cabecalho-interno">
+      <a href="#topo" class="marca">Lilian Corrêa</a>
+      <nav class="menu-desktop" aria-label="Principal">
+        <a href="#para-quem">Para quem é</a>
+        <a href="#desafio">O desafio</a>
+        <a href="#modulos">O que você vai aprender</a>
+        <a href="#mentoria">Mentoria</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#" class="botao-pill botao-pill--pequeno cta-cabecalho js-checkout">
+        <span>Quero encarar minhas dívidas</span>
+        <span aria-hidden>→</span>
+      </a>
+      <button class="botao-menu" aria-label="Abrir menu" id="botaoMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="menu-mobile" id="menuMobile">
+      <a href="#para-quem">Para quem é</a>
+      <a href="#desafio">O desafio</a>
+      <a href="#modulos">O que você vai aprender</a>
+      <a href="#mentoria">Mentoria</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="botao-pill botao-pill--pequeno js-checkout">
+        <span>Quero encarar minhas dívidas</span>
+        <span aria-hidden>→</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="topo">
+
+    <!-- =========================================================
+         Hero
+         ========================================================= -->
+    <section class="hero">
+      <div class="container-largo hero-interno">
+        <div class="hero-grade">
+          <div class="coluna-hero-texto">
+            <div class="hero-selo">
+              <span class="ponto"></span>
+              Desafio para mulheres 40+
+            </div>
+            <h1 class="hero-titulo">
+              Pare de <span class="tarja">fugir das suas dívidas</span> e organize tudo em <span class="tarja">um fim de semana</span>, com um passo a passo simples, <span class="tarja-fundo">acolhedor e possível</span>
+            </h1>
+            <p class="hero-descricao">
+              Se você está cansada de viver com medo de abrir o aplicativo do banco, atender ligações ou olhar sua conta, esse desafio foi criado para te ajudar a encarar sua realidade financeira sem pânico, sem culpa e sem precisar resolver tudo sozinha.
+            </p>
+            <div class="hero-acoes">
+              <a href="#" class="botao-pill botao-pulso js-checkout">
+                <span>Quero encarar minhas dívidas agora</span>
+                <span aria-hidden>→</span>
+              </a>
+              <span class="nota">Acesso imediato pela Hotmart · Garantia de 7 dias</span>
+            </div>
+            <ul class="hero-beneficios">
+              <li>Organize suas dívidas</li>
+              <li>Saiba por onde começar</li>
+              <li>Plano de ação em 48 horas</li>
+              <li>Mentoria para as 20 primeiras</li>
+            </ul>
+          </div>
+          <div class="coluna-hero-foto">
+            <div class="hero-foto">
+              <div class="halo" aria-hidden="true"></div>
+              <div class="moldura">
+                <img src="/__l5e/assets-v1/dc9460de-09f1-4866-bd99-02856c45a0a5/lilian.png" alt="Lilian Corrêa" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         A realidade (dor) + sifrão flutuante
+         ========================================================= -->
+    <section class="secao">
+      <div class="container">
+        <div class="dor-grade">
+          <div class="dor-texto">
+            <div class="sobrancelha"><span class="rotulo">A realidade</span></div>
+            <h2 class="dor-titulo">Você sabe que tem <span class="tarja">dívidas</span>, mas evita olhar para elas?</h2>
+            <div class="dor-paragrafos">
+              <p>Talvez você já tenha <span class="tarja">evitado</span> abrir o app do banco.</p>
+              <p>Talvez tenha sentido <span class="tarja">medo</span> ao ver uma ligação desconhecida.</p>
+              <p>Talvez esteja empurrando a situação com a barriga porque só de pensar nas dívidas já vem ansiedade, culpa e vergonha.</p>
+              <p>E quanto mais você <span class="tarja">adia</span>, maior parece ficar o problema.</p>
+              <p class="destaque">Mas a verdade é que, antes de quitar tudo, você precisa fazer uma coisa: entender com <span class="tarja">clareza</span> o que está acontecendo.</p>
+              <p>É isso que este desafio vai te ajudar a fazer.</p>
+            </div>
+            <div class="dor-cta">
+              <a href="#" class="botao-pill botao-pulso js-checkout">
+                <span>Quero começar pelo primeiro passo</span>
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+          <div class="sifrao-coluna" aria-hidden="true">
+            <img src="/__l5e/assets-v1/39ba576e-a137-492d-abd9-999d46293d9b/sifrao.png" alt="" class="sifrao" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Para quem é
+         ========================================================= -->
+    <section id="para-quem" class="secao fundo-superficie">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">Para quem é</span></div>
+          <h2 class="titulo-secao">Esse desafio é para você que…</h2>
+        </div>
+        <ul class="lista-numerada" id="listaParaQuem"></ul>
+        <div class="dor-cta">
+          <a href="#" class="botao-pill botao-pulso js-checkout">
+            <span>Quero organizar minhas dívidas</span>
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         O desafio
+         ========================================================= -->
+    <section id="desafio" class="secao">
+      <div class="container">
+        <div class="grade-duas">
+          <div>
+            <div class="sobrancelha"><span class="rotulo">O desafio</span></div>
+            <h2 class="titulo-secao">Um desafio simples para você <span class="tarja">encarar suas dívidas</span> com <span class="tarja">clareza</span></h2>
+          </div>
+          <div class="paragrafos-longos">
+            <p>O <span class="destaque">Desafio Encare Suas Dívidas</span> é um eBook prático, direto e acolhedor, criado para te ajudar a sair da paralisia e organizar sua vida financeira começando pelo ponto mais urgente: suas dívidas.</p>
+            <p>A proposta não é prometer milagre. A proposta é te ajudar a olhar para a realidade, listar suas dívidas, entender quais são mais urgentes e definir um primeiro caminho de <span class="tarja">negociação</span>.</p>
+            <p class="destaque">Porque aquilo que fica escondido continua crescendo. Mas aquilo que tem nome, número e prioridade pode ser enfrentado.</p>
+            <div>
+              <a href="#" class="botao-pill botao-pulso js-checkout">
+                <span>Quero acessar o desafio</span>
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Pilares
+         ========================================================= -->
+    <section class="secao fundo-superficie">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">Pilares do método</span></div>
+          <h2 class="titulo-secao">O que você vai fazer dentro do desafio</h2>
+        </div>
+        <div class="lista-cartoes" id="listaPilares"></div>
+        <div class="dor-cta">
+          <a href="#" class="botao-pill botao-pulso js-checkout">
+            <span>Quero meu plano para começar</span>
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Módulos
+         ========================================================= -->
+    <section id="modulos" class="secao">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">O que tem dentro</span></div>
+          <h2 class="titulo-secao">4 etapas para encarar suas dívidas <span class="tarja">sem entrar em pânico</span></h2>
+        </div>
+        <div class="lista-modulos" id="listaModulos"></div>
+        <div class="dor-cta">
+          <a href="#" class="botao-pill botao-pulso js-checkout">
+            <span>Quero acessar agora</span>
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Mentoria (bônus)
+         ========================================================= -->
+    <section id="mentoria" class="secao">
+      <div class="container">
+        <div class="bonus-embrulho">
+          <div class="bonus-halo" aria-hidden="true"></div>
+          <div class="bonus-cartao">
+            <div>
+              <div class="bonus-selo"><span class="ponto"></span>Bônus exclusivo</div>
+              <h2 class="bonus-titulo">Mentoria individual para as <span class="tarja">20 primeiras</span> compras</h2>
+              <p class="bonus-descricao">Uma sessão exclusiva, ao vivo, com Lilian Corrêa.</p>
+            </div>
+            <div class="bonus-coluna-direita">
+              <p>As <span class="tarja">20 primeiras mulheres</span> que entrarem no desafio terão direito a uma mentoria individual com Lilian, marcada após o período de garantia de 7 dias.</p>
+              <p>Nessa sessão, você poderá conversar sobre sua lista de dívidas, tirar dúvidas e receber um direcionamento mais claro para pensar na sua negociação.</p>
+              <ul class="bonus-checklist" id="listaBonus"></ul>
+              <div class="bonus-rodape">Válido apenas para as 20 primeiras compras</div>
+              <div>
+                <a href="#" class="botao-pill botao-pulso js-checkout">
+                  <span>Quero garantir meu bônus</span>
+                  <span aria-hidden>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Antes e depois
+         ========================================================= -->
+    <section class="secao">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">Antes e depois</span></div>
+          <h2 class="titulo-secao">A transformação que esse desafio pode gerar</h2>
+        </div>
+        <div class="antes-depois">
+          <div class="quadro-antes">
+            <div class="titulo-quadro">Antes</div>
+            <ul id="listaAntes"></ul>
+          </div>
+          <div class="quadro-depois">
+            <div class="titulo-quadro">Depois</div>
+            <ul id="listaDepois"></ul>
+          </div>
+        </div>
+        <div class="dor-cta">
+          <a href="#" class="botao-pill botao-pulso js-checkout">
+            <span>Quero sair da confusão financeira</span>
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Sobre a Lilian
+         ========================================================= -->
+    <section class="secao fundo-superficie">
+      <div class="container">
+        <div class="sobre-grade">
+          <div class="sobre-foto">
+            <div class="moldura-externa" aria-hidden="true"></div>
+            <div class="foto-interna">
+              <img src="/__l5e/assets-v1/dc9460de-09f1-4866-bd99-02856c45a0a5/lilian.png" alt="Lilian Corrêa" />
+            </div>
+          </div>
+          <div>
+            <div class="sobrancelha"><span class="rotulo">Quem é Lilian Corrêa</span></div>
+            <h2 class="titulo-secao">Quem vai te guiar nesse processo</h2>
+            <div class="paragrafos-longos" style="margin-top:1.5rem">
+              <p>Lilian Corrêa é Engenheira Civil, Matemática e investidora com mais de 5 anos de carteira ativa.</p>
+              <p>Mas antes de falar sobre investimentos e renda passiva, ela entende que muitas mulheres precisam começar pelo ponto mais urgente: organizar as dívidas e recuperar o controle da própria vida financeira.</p>
+              <p>Lilian também já viveu a experiência de estar endividada e hoje usa sua trajetória para mostrar que é possível sair do medo, reorganizar a vida financeira e construir uma relação mais consciente com o dinheiro.</p>
+              <p class="destaque">O propósito dela é ajudar mulheres 40+ a olharem para a própria realidade com coragem, sem culpa e com direção.</p>
+            </div>
+            <div class="dor-cta">
+              <a href="#" class="botao-pill botao-pulso js-checkout">
+                <span>Quero ser direcionada pela Lilian</span>
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Oferta
+         ========================================================= -->
+    <section id="oferta" class="secao">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">A oferta</span></div>
+          <h2 class="titulo-secao">Comece hoje a encarar suas dívidas</h2>
+          <p style="margin-top:1.25rem;color:var(--texto-suave);font-size:1rem;line-height:1.6;">
+            Acesse o Desafio Encare Suas Dívidas e dê o primeiro passo para organizar sua vida financeira com mais clareza.
+          </p>
+        </div>
+        <div class="oferta-caixa">
+          <div class="oferta-inclusos">
+            <div class="titulo-quadro" style="font-family:var(--fonte-texto);text-transform:uppercase;letter-spacing:0.22em;font-size:0.72rem;font-weight:600;color:var(--texto-suave);margin-bottom:1.25rem">Está incluso</div>
+            <ul id="listaInclusos"></ul>
+          </div>
+          <div class="oferta-preco">
+            <div class="rotulo-invest">Investimento</div>
+            <div class="valor"><span class="tarja">R$ 67</span></div>
+            <p class="parcelas">ou em até 12x pela Hotmart</p>
+            <div class="regua-tarja"></div>
+            <div class="beneficios">
+              <div><span class="tarja">7 dias de garantia</span></div>
+              <div>Bônus para as <span class="tarja">20 primeiras compras</span></div>
+            </div>
+            <div style="margin-top:1.5rem">
+              <a href="#" class="botao-pill botao-pulso js-checkout">
+                <span>Quero encarar minhas dívidas agora</span>
+                <span aria-hidden>→</span>
+              </a>
+              <p class="compra-segura">Compra segura pela Hotmart</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FAQ
+         ========================================================= -->
+    <section id="faq" class="secao fundo-superficie">
+      <div class="container">
+        <div class="dor-texto">
+          <div class="sobrancelha"><span class="rotulo">FAQ</span></div>
+          <h2 class="titulo-secao">Perguntas frequentes</h2>
+        </div>
+        <div class="faq" id="listaFaq"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA final
+         ========================================================= -->
+    <section class="secao cta-final">
+      <div class="container">
+        <div class="conteudo">
+          <div class="sobrancelha"><span class="rotulo tarja">Último convite</span></div>
+          <h2>Você não precisa ver o caminho inteiro.</h2>
+          <p class="subtitulo">Só precisa <span class="tarja">dar o próximo passo</span>.</p>
+          <div class="paragrafos">
+            <p>Talvez suas dívidas pareçam grandes demais agora.</p>
+            <p>Talvez você tenha medo de descobrir o número real.</p>
+            <p>Talvez você esteja cansada de adiar essa conversa com você mesma.</p>
+            <p>Mas continuar fugindo não torna o problema menor.</p>
+            <p class="destaque">O primeiro passo para mudar sua vida financeira é encarar a realidade com <span class="tarja">clareza</span>.</p>
+            <p class="destaque">E você <span class="tarja">não precisa fazer isso sozinha</span>.</p>
+          </div>
+          <div class="dor-cta">
+            <a href="#" class="botao-pill botao-pulso js-checkout">
+              <span>Quero encarar minhas dívidas agora</span>
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       Rodapé
+       ========================================================= -->
+  <footer class="rodape">
+    <div class="container-largo rodape-interno">
+      <div class="cartao-instagram">
+        <div class="cartao-instagram-flex">
+          <div class="foto-embrulho">
+            <img src="/__l5e/assets-v1/dc9460de-09f1-4866-bd99-02856c45a0a5/lilian.png" alt="Lilian Corrêa" />
+          </div>
+          <div style="flex:1">
+            <div class="sobrancelha"><span class="rotulo tarja">Conheça a Lilian</span></div>
+            <div class="titulo">Acompanhe o dia a dia no Instagram</div>
+            <div class="subtexto">@liliancorreainvest · conteúdo sobre organização financeira e investimentos</div>
+          </div>
+          <a href="https://instagram.com/liliancorreainvest" target="_blank" rel="noopener noreferrer" class="botao-pill">
+            <svg class="icone-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            <span>Seguir @liliancorreainvest</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="rodape-colunas">
+        <div>
+          <div class="rodape-marca">Lilian Corrêa</div>
+          <div class="rodape-marca-tag">Desafio Encare Suas Dívidas</div>
+          <p class="rodape-descricao">
+            Organização financeira para mulheres 40+ que querem sair da confusão, encarar os números e construir um futuro mais leve.
+          </p>
+        </div>
+        <div class="rodape-coluna">
+          <div class="titulo-coluna">Institucional</div>
+          <ul>
+            <li><a href="#">Termos de uso</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="rodape-coluna">
+          <div class="titulo-coluna">Navegar</div>
+          <ul>
+            <li><a href="#desafio">O desafio</a></li>
+            <li><a href="#oferta">Oferta</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-legal">
+        <p>© 2026 Lilian Corrêa. Todos os direitos reservados.</p>
+        <p>Este produto não garante resultados. Os resultados dependem do comprometimento individual de cada participante.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================
+    // Configurações do site
+    // =========================================================
+    const CONFIG = {
+      // URL do checkout (Hotmart) usada em todos os CTAs
+      urlCheckout: "https://pay.hotmart.com/U106310723B?checkoutMode=10&bid=1782070290138",
+
+      // Itens da seção "Para quem é"
+      paraQuem: [
+        "Tem dívidas e sente medo de olhar para os números.",
+        "Está protelando uma solução porque acha que o problema é grande demais.",
+        "Sente vergonha de estar endividada.",
+        "Tem medo de atender ligações de cobrança.",
+        "Está negativada ou sem linha de crédito.",
+        "Sente que o dinheiro nunca sobra e que investir parece uma realidade distante.",
+        "Quer organizar suas dívidas, mas não sabe por onde começar.",
+        "Precisa de um caminho realista para negociar e respirar com mais tranquilidade."
+      ],
+
+      // Pilares do método
+      pilares: [
+        { n: "01", titulo: "Listar suas dívidas", texto: "Você vai colocar tudo no papel: cartões, empréstimos, boletos, contas atrasadas, dívidas informais e valores que hoje estão espalhados ou confusos. O objetivo é transformar medo em clareza." },
+        { n: "02", titulo: "Definir a escala de urgência", texto: "Nem toda dívida deve ser tratada da mesma forma. Você vai entender quais dívidas crescem mais rápido, quais causam mais dano agora e qual deve ser priorizada primeiro." },
+        { n: "03", titulo: "Criar uma proposta de negociação", texto: "Depois de entender sua situação, você vai montar um plano simples para começar a conversar com os credores. Você não precisa quitar tudo de uma vez. Você precisa saber o que dizer, por onde começar e qual dívida atacar primeiro." }
+      ],
+
+      // Módulos do desafio
+      modulos: [
+        { n: "01", titulo: "O medo que te paralisa tem nome", texto: "Você vai entender por que evita olhar para as dívidas e como a vergonha, o medo e a ansiedade podem te manter parada." },
+        { n: "02", titulo: "Coloque tudo na mesa", texto: "Você vai aprender a mapear cada dívida com calma, sem julgamento e sem precisar resolver tudo no mesmo dia." },
+        { n: "03", titulo: "Conheça o inimigo", texto: "Você vai entender como os juros crescem enquanto você espera e por que algumas dívidas precisam ser tratadas antes de outras." },
+        { n: "04", titulo: "Seu plano das próximas 48 horas", texto: "Você vai definir um primeiro passo prático: qual dívida observar, como separar informações e como iniciar uma conversa de negociação." }
+      ],
+
+      // Bônus (checklist da mentoria)
+      bonusChecklist: [
+        "Sessão individual ao vivo",
+        "Análise da sua lista de dívidas",
+        "Direcionamento personalizado",
+        "Marcada após os 7 dias de garantia"
+      ],
+
+      // Antes / Depois
+      antes: [
+        "Medo de olhar o banco",
+        "Vergonha das dívidas",
+        "Ligações ignoradas",
+        "Falta de clareza",
+        "Dívidas espalhadas",
+        "Sensação de sufoco",
+        "Sem perspectiva de futuro",
+        "Procrastinação constante"
+      ],
+      depois: [
+        "Dívidas listadas",
+        "Clareza do momento financeiro",
+        "Prioridades definidas",
+        "Primeiro plano de ação",
+        "Mais coragem para negociar",
+        "Menos sensação de descontrole",
+        "Direção para recomeçar",
+        "Futuro financeiro mais leve"
+      ],
+
+      // Itens inclusos na oferta
+      inclusos: [
+        "E-book Desafio Encare Suas Dívidas",
+        "Método simples para listar suas dívidas",
+        "Direcionamento para priorizar o que resolver primeiro",
+        "Plano de ação para as próximas 48 horas",
+        "Acesso imediato pela Hotmart",
+        "7 dias de garantia",
+        "Bônus: mentoria individual para as 20 primeiras compras"
+      ],
+
+      // FAQ
+      faq: [
+        { p: "Preciso ter experiência com finanças?", r: "Não. O desafio foi criado para quem está começando do zero e sente medo de encarar o problema." },
+        { p: "Preciso ter dinheiro para quitar minhas dívidas agora?", r: "Não. O primeiro passo não é quitar tudo. É entender sua situação, organizar as dívidas e saber por onde começar." },
+        { p: "E se minha situação estiver muito ruim?", r: "O desafio foi pensado justamente para quem sente que o problema está grande demais. A proposta é trazer clareza e um primeiro caminho realista." },
+        { p: "Vou precisar usar planilhas complicadas?", r: "Não. Você pode fazer o processo com papel, caderno, celular ou uma tabela simples." },
+        { p: "A mentoria está inclusa para todo mundo?", r: "A sessão individual de mentoria será bônus apenas para as 20 primeiras compras e será marcada após o período de garantia de 7 dias." },
+        { p: "Como recebo o produto?", r: "O acesso ao eBook será feito pela Hotmart logo após a confirmação da compra." },
+        { p: "Tem garantia?", r: "Sim. Você tem 7 dias de garantia." },
+        { p: "E se eu achar que para mim não tem solução?", r: "O desafio não promete solução mágica. Ele te ajuda a parar de fugir do problema, organizar os números e descobrir qual é o próximo passo possível dentro da sua realidade." }
+      ]
+    };
+
+    // =========================================================
+    // Renderização das listas
+    // =========================================================
+    document.querySelectorAll(".js-checkout").forEach(function (a) {
+      a.setAttribute("href", CONFIG.urlCheckout);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+    });
+
+    const listaParaQuem = document.getElementById("listaParaQuem");
+    CONFIG.paraQuem.forEach(function (texto, i) {
+      const li = document.createElement("li");
+      li.innerHTML = '<span class="numero">' + String(i + 1).padStart(2, "0") + '</span><p>' + texto + '</p>';
+      listaParaQuem.appendChild(li);
+    });
+
+    const listaPilares = document.getElementById("listaPilares");
+    CONFIG.pilares.forEach(function (p) {
+      const art = document.createElement("article");
+      art.className = "cartao-escuro";
+      art.innerHTML = '<div class="numero">' + p.n + '</div><h3>' + p.titulo + '</h3><p>' + p.texto + '</p>';
+      listaPilares.appendChild(art);
+    });
+
+    const listaModulos = document.getElementById("listaModulos");
+    CONFIG.modulos.forEach(function (m) {
+      const art = document.createElement("article");
+      art.className = "modulo";
+      art.innerHTML = '<div class="numero">' + m.n + '</div><h3>' + m.titulo + '</h3><p>' + m.texto + '</p>';
+      listaModulos.appendChild(art);
+    });
+
+    const listaBonus = document.getElementById("listaBonus");
+    CONFIG.bonusChecklist.forEach(function (item) {
+      const li = document.createElement("li");
+      li.innerHTML = '<span class="bonus-check">✓</span>' + item;
+      listaBonus.appendChild(li);
+    });
+
+    const listaAntes = document.getElementById("listaAntes");
+    CONFIG.antes.forEach(function (t) {
+      const li = document.createElement("li");
+      li.textContent = t;
+      listaAntes.appendChild(li);
+    });
+    const listaDepois = document.getElementById("listaDepois");
+    CONFIG.depois.forEach(function (t) {
+      const li = document.createElement("li");
+      li.textContent = t;
+      listaDepois.appendChild(li);
+    });
+
+    const listaInclusos = document.getElementById("listaInclusos");
+    CONFIG.inclusos.forEach(function (t) {
+      const li = document.createElement("li");
+      li.textContent = t;
+      listaInclusos.appendChild(li);
+    });
+
+    // =========================================================
+    // FAQ acordeão
+    // =========================================================
+    const listaFaq = document.getElementById("listaFaq");
+    CONFIG.faq.forEach(function (f, i) {
+      const item = document.createElement("div");
+      item.className = "faq-item" + (i === 0 ? " aberto" : "");
+      item.innerHTML =
+        '<button class="faq-botao" type="button">' +
+          '<span class="pergunta">' + f.p + '</span>' +
+          '<span class="faq-icone" aria-hidden="true">+</span>' +
+        '</button>' +
+        '<div class="faq-resposta">' + f.r + '</div>';
+      item.querySelector(".faq-botao").addEventListener("click", function () {
+        item.classList.toggle("aberto");
+      });
+      listaFaq.appendChild(item);
+    });
+
+    // =========================================================
+    // Menu mobile
+    // =========================================================
+    const botaoMenu = document.getElementById("botaoMenu");
+    const menuMobile = document.getElementById("menuMobile");
+    botaoMenu.addEventListener("click", function () {
+      menuMobile.classList.toggle("aberto");
+    });
+    menuMobile.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { menuMobile.classList.remove("aberto"); });
+    });
+  </script>
+</body>
+</html>
